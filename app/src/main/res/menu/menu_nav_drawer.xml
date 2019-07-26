@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="First Fragment" android:id="@+id/fragment_first"
+              android:icon="@android:drawable/presence_online"/>
+        <item android:title="Second Fragment" android:id="@+id/fragment_second"
+              android:icon="@android:drawable/presence_online"/>
+        <item android:title="Third Fragment" android:id="@+id/fragment_third"
+              android:icon="@android:drawable/presence_online"/>
+
+    </group>
+</menu>

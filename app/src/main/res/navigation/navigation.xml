@@ -2,27 +2,30 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation_graph"
-            app:startDestination="@id/firstFragment">
+            app:startDestination="@id/fragment_first">
 
-    <fragment android:id="@+id/firstFragment" android:name="com.nonofce.android.navigationcomponent.FirstFragment"
-              android:label="fragment_first" tools:layout="@layout/fragment_first">
-        <action android:id="@+id/first_to_second" app:destination="@+id/secondFragment"
+    <fragment android:id="@+id/fragment_first" android:name="com.nonofce.android.navigationcomponent.FirstFragment"
+              android:label="First Fragment" tools:layout="@layout/fragment_first">
+        <action android:id="@+id/first_to_second" app:destination="@+id/fragment_second"
+                app:enterAnim="@anim/enter_slide_down" app:exitAnim="@anim/exit_slide_down"
+                app:popEnterAnim="@anim/pop_enter_slide_up" app:popExitAnim="@anim/pop_exit_slide_up"/>
+        <action android:id="@+id/first_to_third" app:destination="@+id/fragment_third"
                 app:enterAnim="@anim/enter_slide_down" app:exitAnim="@anim/exit_slide_down"
                 app:popEnterAnim="@anim/pop_enter_slide_up" app:popExitAnim="@anim/pop_exit_slide_up"/>
 
     </fragment>
-    <fragment android:id="@+id/secondFragment" android:name="com.nonofce.android.navigationcomponent.SecondFragment"
-              android:label="fragment_second" tools:layout="@layout/fragment_second">
-        <action android:id="@+id/second_to_third" app:destination="@id/thirdFragment"
+    <fragment android:id="@+id/fragment_second" android:name="com.nonofce.android.navigationcomponent.SecondFragment"
+              android:label="Second Fragment" tools:layout="@layout/fragment_second">
+        <action android:id="@+id/second_to_third" app:destination="@id/fragment_third"
                 app:enterAnim="@anim/enter_slide_down" app:exitAnim="@anim/exit_slide_down"
                 app:popExitAnim="@anim/pop_exit_slide_up"
                 app:popEnterAnim="@anim/pop_enter_slide_up"/>
         <argument android:name="your_name" app:argType="string" android:defaultValue="No name"/>
 
     </fragment>
-    <fragment android:id="@+id/thirdFragment" android:name="com.nonofce.android.navigationcomponent.ThirdFragment"
-              android:label="fragment_third" tools:layout="@layout/fragment_third">
-        <action android:id="@+id/third_to_first" app:destination="@+id/firstFragment"
+    <fragment android:id="@+id/fragment_third" android:name="com.nonofce.android.navigationcomponent.ThirdFragment"
+              android:label="Third Fragment" tools:layout="@layout/fragment_third">
+        <action android:id="@+id/third_to_first" app:destination="@+id/fragment_first"
                 app:enterAnim="@anim/enter_slide_down" app:exitAnim="@anim/exit_slide_down"
                 app:popEnterAnim="@anim/pop_enter_slide_up" app:popExitAnim="@anim/pop_exit_slide_up"/>
         <argument android:name="your_full_name" app:argType="string" android:defaultValue="No value"/>

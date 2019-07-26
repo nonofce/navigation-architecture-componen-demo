@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/my_name" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="194dp"/>
+            android:id="@+id/my_name" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="174dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,4 +28,5 @@
             app:layout_constraintEnd_toEndOf="parent" android:id="@+id/last_name_edit"
             android:hint="Your last name please ..." android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/second_button"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

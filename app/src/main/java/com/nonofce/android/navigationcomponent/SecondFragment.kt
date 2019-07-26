@@ -3,33 +3,22 @@ package com.nonofce.android.navigationcomponent
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_second.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [SecondFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [SecondFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class SecondFragment : androidx.fragment.app.Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
+    private var my_first_name: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +32,6 @@ class SecondFragment : androidx.fragment.app.Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_second, container, false)
     }
 
@@ -51,72 +39,21 @@ class SecondFragment : androidx.fragment.app.Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //my_name.text = getString(R.string.your_name_is) + " " + SecondFragmentArgs.fromBundle(arguments).yourName
-        my_name.text = getString(R.string.your_name_is) + " " + arguments?.let {
+        my_first_name = arguments?.let {
             SecondFragmentArgs.fromBundle(it).yourName
-        }
+        } ?: "No name"
+        my_name.text = getString(R.string.your_name_is) + " " + my_first_name
         second_button.setOnClickListener {
             val secondToThirdAction = SecondFragmentDirections.secondToThird().apply {
-                setYourFullName(my_name.text.toString()+" "+when(last_name_edit.text.toString()){
-                    "" -> "No Last name"
-                    else -> last_name_edit.text.toString()
-                })
+                setYourFullName(
+                    my_first_name + " " + when (last_name_edit.text.toString()) {
+                        "" -> "No Last name"
+                        else -> last_name_edit.text.toString()
+                    }
+                )
             }
             Navigation.findNavController(it).navigate(secondToThirdAction)
         }
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SecondFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SecondFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
