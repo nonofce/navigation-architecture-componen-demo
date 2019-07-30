@@ -48,10 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController, drawer_layout)
-
-    }
+    override fun onSupportNavigateUp(): Boolean = NavigationUI.navigateUp(navController, drawer_layout)
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -71,7 +68,5 @@ class MainActivity : AppCompatActivity() {
         return navigated || super.onOptionsItemSelected(item)
     }
 
-    private fun doNavigation(item: MenuItem){
-        navController.navigate(item.itemId)
-    }
+    private fun doNavigation(item: MenuItem) = navController.navigate(item.itemId)
 }
