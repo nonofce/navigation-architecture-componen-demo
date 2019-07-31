@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_first.*
 
@@ -23,9 +22,10 @@ class FirstFragment : androidx.fragment.app.Fragment() {
         first_button.setOnClickListener {
             val firstToSecondAction = FirstFragmentDirections.firstToSecond().apply {
                 setYourName(
-                    when (your_name_edit.text.toString()) {
-                        "" -> "No name"
-                        else -> your_name_edit.text.toString()
+                    if (your_name_edit.text.toString() == "") {
+                        "No name"
+                    } else {
+                        your_name_edit.text.toString()
                     }
                 )
             }
@@ -41,8 +41,7 @@ class FirstFragment : androidx.fragment.app.Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         savedInstanceState?.let {
-            your_name_edit.editableText.clear()
-            your_name_edit.editableText.insert(0, it.getString(FIRST_NAME_PARAM))
+            your_name_edit.setText(it.getString(FIRST_NAME_PARAM))
         }
     }
 }

@@ -19,7 +19,6 @@ class SecondFragment : androidx.fragment.app.Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //my_name.text = getString(R.string.your_name_is) + " " + SecondFragmentArgs.fromBundle(arguments).yourName
         my_first_name = arguments?.let {
             SecondFragmentArgs.fromBundle(it).yourName
         } ?: "No name"
@@ -27,9 +26,10 @@ class SecondFragment : androidx.fragment.app.Fragment() {
         second_button.setOnClickListener {
             val secondToThirdAction = SecondFragmentDirections.secondToThird().apply {
                 setYourFullName(
-                    my_first_name + " " + when (last_name_edit.text.toString()) {
-                        "" -> "No Last name"
-                        else -> last_name_edit.text.toString()
+                    my_first_name + " " + if (last_name_edit.text.toString() == "") {
+                        "No last name"
+                    } else {
+                        last_name_edit.text.toString()
                     }
                 )
             }
